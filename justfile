@@ -20,6 +20,6 @@ setup target:
 format:
     cargo fmt --all
     markdownlint --fix ./README.md .github/README.md
-    yamlfmt '**/*.yml'
+    yamlfmt .github/workflows/*
     taplo fmt
     just --fmt

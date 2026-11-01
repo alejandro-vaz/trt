@@ -1,4 +1,3 @@
----
 name: checks
 'on':
   pull_request:
@@ -24,8 +23,8 @@ jobs:
         run: cargo package
       - name: markdownlint
         run: |
-            git ls-files '*.md' -z | xargs -0 docker run --rm -v "$PWD:/work" \
-            -w /work ghcr.io/igorshubovych/markdownlint-cli:v0.41.0
+          git ls-files '*.md' -z | xargs -0 docker run --rm -v "$PWD:/work" \
+          -w /work ghcr.io/igorshubovych/markdownlint-cli:v0.41.0
       - name: yamllint
         run: |
           git ls-files '*.yml' | xargs docker run --rm -v "$PWD:/work" \
@@ -36,3 +35,11 @@ jobs:
           -w /work tamasfe/taplo:0.10.0 fmt --check
       - name: justlint
         run: just --fmt --check
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@nightly
+      - name: build
+        run: cargo build
