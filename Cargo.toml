@@ -4,13 +4,13 @@ version = "0.0.0"
 edition = "2024"
 authors = ["Alejandro Vaz <alejandro.vaz.myt@gmail.com>"]
 default-run = "trt"
-categories = ["development-tools", "parser-implementations", "parsing", "algorithms"]
-keywords = [
-    "programming language",
-    "compiler",
-    "trt",
-    "language"
+categories = [
+  "development-tools",
+  "parser-implementations",
+  "parsing",
+  "algorithms",
 ]
+keywords = ["programming language", "compiler", "trt", "language"]
 description = "the TRT language"
 exclude = [".github/", ".gitignore"]
 license = "MIT"
