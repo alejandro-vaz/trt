@@ -2,9 +2,28 @@
 name = "trt"
 version = "0.0.0"
 edition = "2024"
+authors = ["Alejandro Vaz <alejandro.vaz.myt@gmail.com>"]
+default-run = "trt"
+categories = ["development-tools", "parser-implementations", "parsing", "algorithms"]
+keywords = [
+    "programming language",
+    "compiler",
+    "trt",
+    "language"
+]
+description = "the TRT language"
+exclude = [".github/", ".gitignore"]
+license = "MIT"
+publish = false
 
 [[bin]]
 name = "trt"
 path = "./main.rs"
 
-[dependencies]
+[profile.release]
+lto = "fat"
+opt-level = 3
+strip = true
+debug = false
+debug-assertions = false
+codegen-units = 1
