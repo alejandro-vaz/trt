@@ -1,6 +1,6 @@
 #![allow(missing_docs)]
+#![deny(unused, deprecated, unreachable_code)]
 #![forbid(
-    unused,
     missing_debug_implementations,
     dropping_copy_types,
     dropping_references,
@@ -20,12 +20,17 @@
     overflowing_literals,
     redundant_imports,
     single_use_lifetimes,
-    deprecated,
     trivial_casts,
     unknown_lints,
     arithmetic_overflow,
-    type_alias_bounds,
-    unreachable_code
+    type_alias_bounds
 )]
 
-fn main() { println!("Hello, world!") }
+mod arguments;
+
+use {
+    arguments::Arguments,
+    clap::Parser
+};
+
+fn main() { let _arguments = Arguments::parse(); }
