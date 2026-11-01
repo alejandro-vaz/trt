@@ -1,0 +1,18 @@
+name: checks
+on:
+    pull_request:
+    merge_group:
+        types: [checks_requested]
+jobs:
+    practices:
+        name: Practices
+        runs-on: ubuntu-latest
+        steps:
+          - name: checkout
+            uses: actions/checkout@v7
+          - name: markdownlint
+            run: git ls-files '*.md' -z | xargs -0 docker run --rm -v "$PWD:/work" -w /work ghcr.io/igorshubovych/markdownlint-cli:v0.41.0
+          - name: yamllint
+            run: git ls-files '*.yml' | xargs docker run --rm -v "$PWD:/work" -w /work cytopia/yamllint
+          - name: tomllint
+            run: git ls-files '*.toml' -z | xargs -0 docker run --rm -v "$PWD:/work" -w /work tamasfe/taplo:0.10.0 fmt --check

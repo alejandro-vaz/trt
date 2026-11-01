@@ -1,3 +1,3 @@
-# trt lang
+# trt 
 
-there's nothing here yet
+`trt` is the compiler for the TRT Programming Language, an experimental language based on type theory
