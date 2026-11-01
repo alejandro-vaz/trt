@@ -5,14 +5,14 @@ install:
 setup target:
     #!/bin/bash
     set -euo pipefail
-    case "{{target}}" in
+    case "{{ target }}" in
         macos)
             brew install markdownlint-cli
             brew install yamlfmt
             brew install taplo
             ;;
         *)
-            echo "Error: Unsupported target '{{target}}'"
+            echo "Error: Unsupported target '{{ target }}'"
             just
             exit 1
             ;;
@@ -22,3 +22,4 @@ format:
     markdownlint --fix ./README.md .github/README.md
     yamlfmt '**/*.yml'
     taplo fmt
+    just --fmt

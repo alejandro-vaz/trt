@@ -9,18 +9,15 @@ jobs:
     name: Practices
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v7
-      - name: install
-        uses: dtolnay/rust-toolchain@nightly
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: rustfmt, clippy
+      - uses: extractions/setup-just@v4
       - name: style
-        run: |
-          rustup component add rustfmt
-          cargo fmt --all --check
+        run: cargo fmt --all --check
       - name: clippy
-        run: |
-          rustup component add clippy
-          cargo clippy
+        run: cargo clippy
       - name: documentation
         run: cargo doc
       - name: package
@@ -37,3 +34,5 @@ jobs:
         run: |
           git ls-files '*.toml' -z | xargs -0 docker run --rm -v "$PWD:/work" \
           -w /work tamasfe/taplo:0.10.0 fmt --check
+      - name: justlint
+        run: just --fmt --check
