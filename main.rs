@@ -25,24 +25,20 @@
     type_alias_bounds
 )]
 
-mod arguments;
+mod commands;
 mod manifest;
 
 use {
     anyhow::Result,
-    arguments::{
-        Arguments,
-        command::Command
-    },
     clap::Parser,
+    commands::Command,
     manifest::Manifest,
     std::fs::read_to_string,
     toml::from_str
 };
 
 fn main() -> Result<()> {
-    let arguments = Arguments::parse();
-    match arguments.command {
+    match Command::parse() {
         Command::Build {
             directory
         } => {

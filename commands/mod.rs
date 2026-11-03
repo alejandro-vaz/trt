@@ -1,8 +1,6 @@
-pub mod command;
-
 use {
     clap::Parser,
-    command::Command
+    std::path::PathBuf
 };
 
 #[derive(Parser)]
@@ -13,7 +11,10 @@ use {
     disable_help_flag = true,
     disable_version_flag = true
 )]
-pub struct Arguments {
-    #[command(subcommand)]
-    pub command: Command
+pub enum Command {
+    #[command(about = "Build an injection")]
+    Build {
+        #[arg(default_value = "./")]
+        directory: PathBuf
+    }
 }
