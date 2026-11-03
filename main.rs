@@ -38,7 +38,7 @@ use {
 };
 
 fn main() -> Result<()> {
-    match Command::parse() {
+    return match Command::parse() {
         Command::Build {
             directory
         } => {
@@ -47,5 +47,6 @@ fn main() -> Result<()> {
             dbg!(&manifest);
             todo!()
         }
+        Command::Version => Result::Ok(println!("TRT v{}", env!("CARGO_PKG_VERSION")))
     };
 }
