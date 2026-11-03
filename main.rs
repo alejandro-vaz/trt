@@ -25,13 +25,13 @@
     type_alias_bounds
 )]
 
-mod commands;
+mod command;
 mod manifest;
 
 use {
     anyhow::Result,
     clap::Parser,
-    commands::Command,
+    command::Command,
     manifest::Manifest,
     std::fs::read_to_string,
     toml::from_str

@@ -17,6 +17,6 @@ pub enum Command {
         #[arg(default_value = "./")]
         directory: PathBuf
     },
-    #[command(about = "Show installed TRT version")]
+    #[command(about = "Show the installed TRT version")]
     Version
 }
