@@ -4,6 +4,7 @@ version = "0.0.0"
 edition = "2024"
 authors = ["Alejandro Vaz <alejandro.vaz.myt@gmail.com>"]
 default-run = "trt"
+repository = "https://github.com/trtlang/trt"
 categories = [
   "development-tools",
   "parser-implementations",
@@ -29,4 +30,22 @@ debug-assertions = false
 codegen-units = 1
 
 [dependencies]
-clap = { version = "4", features = ["derive"] }
+anyhow = { version = "1", default-features = false }
+clap = { version = "4", default-features = false, features = [
+  "color",
+  "derive",
+  "error-context",
+  "help",
+  "std",
+  "string",
+  "suggestions",
+  "usage",
+  "wrap_help",
+] }
+serde = { version = "1", default-features = false, features = ["derive"] }
+toml = { version = "1", features = [
+  "fast_hash",
+  "parse",
+  "preserve_order",
+  "serde",
+], default-features = false }

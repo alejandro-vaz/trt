@@ -1,5 +1,5 @@
 #![allow(missing_docs)]
-#![deny(unused, deprecated, unreachable_code)]
+#![deny(unused, deprecated, unreachable_code, nonstandard_style)]
 #![forbid(
     missing_debug_implementations,
     dropping_copy_types,
@@ -14,7 +14,6 @@
     macro_use_extern_crate,
     missing_copy_implementations,
     mutable_transmutes,
-    nonstandard_style,
     noop_method_call,
     opaque_hidden_inferred_bound,
     overflowing_literals,
@@ -27,10 +26,30 @@
 )]
 
 mod arguments;
+mod manifest;
 
 use {
-    arguments::Arguments,
-    clap::Parser
+    anyhow::Result,
+    arguments::{
+        Arguments,
+        command::Command
+    },
+    clap::Parser,
+    manifest::Manifest,
+    std::fs::read_to_string,
+    toml::from_str
 };
 
-fn main() { let _arguments = Arguments::parse(); }
+fn main() -> Result<()> {
+    let arguments = Arguments::parse();
+    match arguments.command {
+        Command::Build {
+            directory
+        } => {
+            let manifest =
+                from_str::<Manifest>(read_to_string(directory.join("manifest.toml"))?.as_str())?;
+            dbg!(&manifest);
+            todo!()
+        }
+    };
+}

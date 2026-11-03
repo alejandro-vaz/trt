@@ -1,7 +1,8 @@
 _:
     @just --list
 install:
-    cargo install --path .
+    @cargo install --path .
+    @stat -f%z "$HOME/.cargo/bin/trt" | xargs -I{} echo "Binary size: {}B"
 setup target:
     #!/bin/bash
     set -euo pipefail
@@ -18,8 +19,8 @@ setup target:
             ;;
     esac
 format:
-    cargo fmt --all
-    markdownlint --fix ./README.md .github/README.md
-    yamlfmt .github/workflows/*
-    taplo fmt
-    just --fmt
+    @cargo fmt --all
+    @markdownlint --fix ./README.md .github/README.md
+    @yamlfmt .github/workflows/*
+    @taplo fmt
+    @just --fmt
