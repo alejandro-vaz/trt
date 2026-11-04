@@ -23,7 +23,7 @@ fn main() -> Result<()> {
             todo!()
         }
         Command::Version => {
-            println!("TRT v{}", env!("CARGO_PKG_VERSION"));
+            println!("TRT {}", env!("CARGO_PKG_VERSION"));
             Result::Ok(())
         }
     }
