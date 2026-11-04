@@ -1,22 +1,32 @@
 use {
-    clap::Parser,
-    std::path::PathBuf
+    super::information::{
+        PKG_AUTHORS,
+        PKG_DESCRIPTION,
+        PKG_NAME,
+        PKG_VERSION
+    },
+    clap::{
+        ColorChoice,
+        Parser
+    }
 };
 
 #[derive(Parser)]
 #[command(
-    name = env!("CARGO_BIN_NAME"),
-    version = env!("CARGO_PKG_VERSION"),
-    about = env!("CARGO_PKG_DESCRIPTION"),
+    name = PKG_NAME,
+    version = PKG_VERSION,
+    about = PKG_DESCRIPTION,
     disable_help_flag = true,
-    disable_version_flag = true
+    disable_version_flag = true,
+    subcommand_required = true,
+    propagate_version = true,
+    long_version = PKG_VERSION,
+    author = PKG_AUTHORS,
+    color = ColorChoice::Always
 )]
 pub enum Command {
     #[command(about = "Build an injection")]
-    Build {
-        #[arg(default_value = "./")]
-        directory: PathBuf
-    },
+    Build,
     #[command(about = "Show the installed TRT version")]
     Version
 }
