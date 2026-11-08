@@ -21,16 +21,16 @@ use {
         PKG_NAME
     },
     manifest::Manifest,
+    reqwest::blocking::get,
+    self_replace::self_replace,
     std::{
         env::current_dir,
-        fs::read_to_string
+        fs::read_to_string,
+        io::copy
     },
-    termimad::MadSkin,
-    toml::from_str,
     tempfile::NamedTempFile,
-    reqwest::blocking::get,
-    std::io::copy,
-    self_replace::self_replace
+    termimad::MadSkin,
+    toml::from_str
 };
 
 fn main() -> Result<()> {
@@ -56,7 +56,8 @@ fn main() -> Result<()> {
         Action::License => MadSkin::default_dark().print_text(include_str!("../LICENSE.md")),
         Action::Update => {
             let mut handle = NamedTempFile::new()?;
-            let mut response = get("https://github.com/trtlang/trt/releases/latest/download/trt")?.error_for_status()?;
+            let mut response = get("https://github.com/trtlang/trt/releases/latest/download/trt")?
+                .error_for_status()?;
             let file = handle.as_file_mut();
             copy(&mut response, file)?;
             file.sync_all()?;
