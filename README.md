@@ -8,5 +8,6 @@ based on type theory
 simply run:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/trtlang/trt/refs/heads/main/install.sh | sh
+curl -fsSL \ 
+    https://raw.githubusercontent.com/trtlang/trt/refs/heads/main/install.sh | sh
 ```
