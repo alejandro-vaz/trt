@@ -1,19 +1,12 @@
 [package]
 name = "trt"
 edition = "2024"
-authors = ["Alejandro Vaz <alejandro.vaz.myt@gmail.com>"]
 default-run = "trt"
 repository = "https://github.com/trtlang/trt"
-categories = [
-  "development-tools",
-  "parser-implementations",
-  "parsing",
-  "algorithms",
-]
-keywords = ["programming language", "compiler", "trt", "language"]
 description = "the TRT language"
 license = "PolyForm-Noncommercial-1.0.0"
 publish = false
+authors = ["Alejandro Vaz <alejandro.vaz.myt@gmail.com>"]
 
 [lints.rust]
 unused = "deny"
@@ -69,8 +62,8 @@ codegen-units = 1
 incremental = false
 
 [dependencies]
-anyhow = { version = "1", default-features = false }
-clap = { version = "4", default-features = false, features = [
+anyhow = { version = "1.0.104", default-features = false }
+clap = { version = "4.6.7", default-features = false, features = [
   "color",
   "derive",
   "error-context",
@@ -81,8 +74,9 @@ clap = { version = "4", default-features = false, features = [
   "usage",
   "wrap_help",
 ] }
-serde = { version = "1", default-features = false, features = ["derive"] }
-toml = { version = "1", features = [
+serde = { version = "1.0.229", default-features = false, features = ["derive"] }
+termimad = "0.35.5"
+toml = { version = "1.2.1", features = [
   "fast_hash",
   "parse",
   "preserve_order",
@@ -90,8 +84,8 @@ toml = { version = "1", features = [
 ], default-features = false }
 
 [build-dependencies]
-anyhow = { version = "1", default-features = false }
-built = { version = "0.8", features = [
+anyhow = { version = "1.0.104", default-features = false }
+built = { version = "0.8.1", features = [
   "cargo-lock",
   "chrono",
   "dependency-tree",

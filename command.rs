@@ -24,5 +24,7 @@ pub enum Command {
     #[command(about = "Build an injection")]
     Build,
     #[command(about = "Show the installed TRT version")]
-    Version
+    Version,
+    #[command(about = "Show the TRT license")]
+    License
 }

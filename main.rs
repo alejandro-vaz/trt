@@ -25,7 +25,8 @@ use {
         env::current_dir,
         fs::read_to_string
     },
-    toml::from_str
+    toml::from_str,
+    termimad::MadSkin
 };
 
 fn main() -> Result<()> {
@@ -37,19 +38,18 @@ fn main() -> Result<()> {
             dbg!(&manifest);
             todo!()
         }
-        Command::Version => {
-            println!(
-                "{PKG_NAME} {}-{CFG_OS}-{CFG_FAMILY}-{CFG_TARGET_ARCH}
+        Command::Version => println!(
+            "{PKG_NAME} {}-{CFG_OS}-{CFG_FAMILY}-{CFG_TARGET_ARCH}
 -- {PKG_DESCRIPTION}
 
 (c) {PKG_AUTHORS}",
-                if unsafe { GIT_DIRTY.unwrap_unchecked() } {
-                    "(experimental)"
-                } else {
-                    unsafe { GIT_VERSION.unwrap_unchecked() }
-                }
-            );
-            Result::Ok(())
-        }
+            if unsafe { GIT_DIRTY.unwrap_unchecked() } {
+                "(experimental)"
+            } else {
+                unsafe { GIT_VERSION.unwrap_unchecked() }
+            }
+        ),
+        Command::License => MadSkin::default_dark().print_text(include_str!("./LICENSE.md")),
     }
+    Result::Ok(())
 }
