@@ -9,17 +9,8 @@ on:
 permissions:
   contents: write
 jobs:
-  tag:
-    if: github.repository == 'trtlang/trt'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-      - run: git tag ${{ inputs.version }}
-      - run: git push origin ${{ inputs.version }}
   install:
-    needs: tag
+    if: github.repository == 'trtlang/trt'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -28,7 +19,7 @@ jobs:
           name: trt-install-${{ inputs.version }}
           path: ./install.sh
   macos:
-    needs: tag
+    if: github.repository == 'trtlang/trt'
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v7
@@ -42,6 +33,11 @@ jobs:
     needs: [install, macos]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - run: git tag ${{ inputs.version }}
+      - run: git push origin ${{ inputs.version }}
       - uses: actions/download-artifact@v8
         with:
           path: downloads
