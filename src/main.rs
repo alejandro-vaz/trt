@@ -60,7 +60,7 @@ fn main() -> Result<()> {
                 .arg("-c")
                 .arg(
                     "curl -fsSL
-            https://raw.githubusercontent.com/trtlang/trt/refs/heads/main/install.sh | sh"
+                    https://github.com/trtlang/trt/releases/latest/download/install.sh | sh"
                 )
                 .status()?
                 .success()
