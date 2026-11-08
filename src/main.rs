@@ -1,6 +1,8 @@
 #![doc = include_str!("../README.md")]
-#[cfg(all(debug_assertions, not(rust_analyzer), not(doc)))]
+#[cfg(all(debug_assertions, not(rust_analyzer)))]
 compile_error!("cannot build TRT on debug mode");
+#[cfg(doc)]
+compile_error!("not meant to compile for documentation");
 
 mod action;
 mod information {
