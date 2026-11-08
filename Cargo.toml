@@ -1,6 +1,5 @@
 [package]
 name = "trt"
-version = "0.0.0"
 edition = "2024"
 authors = ["Alejandro Vaz <alejandro.vaz.myt@gmail.com>"]
 default-run = "trt"
@@ -13,8 +12,7 @@ categories = [
 ]
 keywords = ["programming language", "compiler", "trt", "language"]
 description = "the TRT language"
-exclude = [".github/", ".gitignore"]
-license = "MIT"
+license = "PolyForm-Noncommercial-1.0.0"
 publish = false
 
 [lints.rust]
@@ -52,6 +50,11 @@ all = "deny"
 
 [lints.rustdoc]
 all = "deny"
+
+[lints.cargo]
+unknown_lints = "deny"
+unused_dependencies = "deny"
+non_kebab_case_features = "deny"
 
 [[bin]]
 name = "trt"

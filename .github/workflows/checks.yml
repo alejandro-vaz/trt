@@ -1,11 +1,8 @@
 name: checks
-'on':
+on:
   pull_request:
-  merge_group:
-    types: [checks_requested]
 jobs:
   practices:
-    name: Practices
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -28,7 +25,6 @@ jobs:
           -w /work tamasfe/taplo:0.10.0 fmt --check
       - run: just --fmt --check
   build:
-    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7

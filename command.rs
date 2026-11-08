@@ -5,10 +5,7 @@ use {
         PKG_NAME,
         PKG_VERSION
     },
-    clap::{
-        ColorChoice,
-        Parser
-    }
+    clap::Parser
 };
 
 #[derive(Parser)]
@@ -21,8 +18,7 @@ use {
     subcommand_required = true,
     propagate_version = true,
     long_version = PKG_VERSION,
-    author = PKG_AUTHORS,
-    color = ColorChoice::Always
+    author = PKG_AUTHORS
 )]
 pub enum Command {
     #[command(about = "Build an injection")]
