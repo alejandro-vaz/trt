@@ -25,8 +25,8 @@ use {
         env::current_dir,
         fs::read_to_string
     },
-    toml::from_str,
-    termimad::MadSkin
+    termimad::MadSkin,
+    toml::from_str
 };
 
 fn main() -> Result<()> {
@@ -49,7 +49,7 @@ fn main() -> Result<()> {
                 unsafe { GIT_VERSION.unwrap_unchecked() }
             }
         ),
-        Command::License => MadSkin::default_dark().print_text(include_str!("./LICENSE.md")),
+        Command::License => MadSkin::default_dark().print_text(include_str!("./LICENSE.md"))
     }
     Result::Ok(())
 }
