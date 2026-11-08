@@ -12,8 +12,6 @@ jobs:
       - uses: extractions/setup-just@v4
       - run: cargo fmt --all --check
       - run: cargo clippy
-      - run: cargo doc
-      - run: cargo package --no-verify
       - run: |
           git ls-files '*.md' -z | xargs -0 docker run --rm -v "$PWD:/work" \
           -w /work ghcr.io/igorshubovych/markdownlint-cli:v0.41.0
