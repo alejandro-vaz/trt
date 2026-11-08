@@ -1,4 +1,4 @@
-#![doc = include_str!("./README.md")]
+#![doc = include_str!("../README.md")]
 #[cfg(all(debug_assertions, not(rust_analyzer), not(doc)))]
 compile_error!("cannot build TRT on debug mode");
 
@@ -49,7 +49,7 @@ fn main() -> Result<()> {
                 unsafe { GIT_VERSION.unwrap_unchecked() }
             }
         ),
-        Command::License => MadSkin::default_dark().print_text(include_str!("./LICENSE.md"))
+        Command::License => MadSkin::default_dark().print_text(include_str!("../LICENSE.md"))
     }
     Result::Ok(())
 }

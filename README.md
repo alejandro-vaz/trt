@@ -5,8 +5,8 @@ based on type theory
 
 ## install
 
-### from `crates.io`
+simply run:
 
 ```sh
-cargo install trt
+curl -fsSL https://raw.githubusercontent.com/trtlang/trt/refs/heads/main/install.sh | sh
 ```
