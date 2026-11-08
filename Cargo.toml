@@ -49,10 +49,6 @@ unknown_lints = "deny"
 unused_dependencies = "deny"
 non_kebab_case_features = "deny"
 
-[[bin]]
-name = "trt"
-path = "./main.rs"
-
 [profile.release]
 lto = "fat"
 opt-level = 3
