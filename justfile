@@ -9,20 +9,6 @@ setup:
     brew install yamlfmt
     brew install taplo
 
-# setup required dependencies for developing trt on linux
-[linux]
-setup:
-    npm install -g markdownlint-cli
-    go install github.com/google/yamlfmt/cmd/yamlfmt@latest
-    cargo install taplo-cli --locked
-
-# setup required dependencies for developing trt on windows
-[windows]
-setup:
-    npm install -g markdownlint-cli
-    go install github.com/google/yamlfmt/cmd/yamlfmt@latest
-    cargo install taplo-cli --locked
-
 # build and install the local development trt
 install:
     cargo clean
