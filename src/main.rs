@@ -8,10 +8,7 @@ mod manifest;
 
 use {
     action::Action,
-    anyhow::{
-        Result,
-        ensure
-    },
+    anyhow::Result,
     clap::Parser,
     information::{
         CFG_FAMILY,
@@ -26,11 +23,14 @@ use {
     manifest::Manifest,
     std::{
         env::current_dir,
-        fs::read_to_string,
-        process::Command
+        fs::read_to_string
     },
     termimad::MadSkin,
-    toml::from_str
+    toml::from_str,
+    tempfile::NamedTempFile,
+    reqwest::blocking::get,
+    std::io::copy,
+    self_replace::self_replace
 };
 
 fn main() -> Result<()> {
@@ -54,17 +54,15 @@ fn main() -> Result<()> {
             }
         ),
         Action::License => MadSkin::default_dark().print_text(include_str!("../LICENSE.md")),
-        #[cfg(not(target_family = "windows"))]
-        Action::Update => ensure!(
-            Command::new("sh")
-                .arg("-c")
-                .arg(
-                    "curl -fsSL
-                    https://github.com/trtlang/trt/releases/latest/download/install.sh | sh"
-                )
-                .status()?
-                .success()
-        )
+        Action::Update => {
+            let mut handle = NamedTempFile::new()?;
+            let mut response = get("https://github.com/trtlang/trt/releases/latest/download/trt")?.error_for_status()?;
+            let file = handle.as_file_mut();
+            copy(&mut response, file)?;
+            file.sync_all()?;
+            self_replace(handle)?;
+            println!("Successfully updated TRT.");
+        }
     }
     Result::Ok(())
 }
