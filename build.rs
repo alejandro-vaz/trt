@@ -1,11 +1,8 @@
 #![doc = include_str!("./README.md")]
 
 use {
-    anyhow::Result,
-    built::write_built_file
+    built::write_built_file,
+    std::io::Result
 };
 
-fn main() -> Result<()> {
-    write_built_file()?;
-    Result::Ok(())
-}
+fn main() -> Result<()> { write_built_file() }
