@@ -3,8 +3,8 @@ use {
         DateTime,
         Utc
     },
-    serde::Deserialize,
-    core::time::Duration
+    core::time::Duration,
+    serde::Deserialize
 };
 
 #[derive(Debug, Deserialize)]
