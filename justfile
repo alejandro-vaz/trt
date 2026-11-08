@@ -22,7 +22,7 @@ stat:
 # format the project
 format:
     cargo fmt --all
-    markdownlint --fix ./README.md .github/README.md LICENSE.md
+    markdownlint --fix ./README.md .github/*.md LICENSE.md
     yamlfmt .github/workflows/*
     taplo fmt
     just --fmt

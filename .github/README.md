@@ -16,3 +16,5 @@ if you don't have `just`, you can get it with `brew install just` or
 
 all commands are usually ran with `just`, see `./justfile` for everything you
 can do
+
+see the [contributing guidelines](./CONTRIBUTING.md) next

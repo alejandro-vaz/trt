@@ -20,11 +20,13 @@ use {
     long_version = PKG_VERSION,
     author = PKG_AUTHORS
 )]
-pub enum Command {
+pub enum Action {
     #[command(about = "Build an injection")]
     Build,
     #[command(about = "Show the installed TRT version")]
     Version,
     #[command(about = "Show the TRT license")]
-    License
+    License,
+    #[command(about = "Update TRT to the latest version")]
+    Update
 }
