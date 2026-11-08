@@ -27,6 +27,7 @@ pub enum Action {
     Version,
     #[command(about = "Show the TRT license")]
     License,
+    #[cfg(not(target_family = "windows"))]
     #[command(about = "Update TRT to the latest version")]
     Update
 }

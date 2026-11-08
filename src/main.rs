@@ -54,6 +54,7 @@ fn main() -> Result<()> {
             }
         ),
         Action::License => MadSkin::default_dark().print_text(include_str!("../LICENSE.md")),
+        #[cfg(not(target_family = "windows"))]
         Action::Update => ensure!(
             Command::new("sh")
                 .arg("-c")
