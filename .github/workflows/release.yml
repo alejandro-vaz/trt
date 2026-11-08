@@ -18,6 +18,15 @@ jobs:
           fetch-depth: 0
       - run: git tag ${{ inputs.version }}
       - run: git push origin ${{ inputs.version }}
+  install:
+    needs: tag
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/upload-artifact@v7
+        with:
+          name: trt-install-${{ inputs.version }}
+          path: ./install.sh
   macos:
     needs: tag
     runs-on: macos-latest
@@ -30,7 +39,7 @@ jobs:
           name: trt-macos-${{ inputs.version }}
           path: target/release/trt
   release:
-    needs: macos
+    needs: [install, macos]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v8

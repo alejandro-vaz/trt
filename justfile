@@ -1,5 +1,4 @@
-# show all available recipes
-help:
+_:
     @just --list
 
 # setup required dependencies for developing trt on macos
@@ -14,15 +13,20 @@ install:
     cargo clean
     cargo install --path .
 
+# uninstall the local development trt
+uninstall:
+    test -f "$HOME/.cargo/bin/trt"
+    cargo uninstall trt
+
 # shows statistics about the current trt
 stat:
-    trt version
+    test -f "$HOME/.cargo/bin/trt"
     stat -f%z "$HOME/.cargo/bin/trt" | xargs -I{} echo "Binary size: {}B"
 
 # format the project
 format:
     cargo fmt --all
-    markdownlint --fix ./README.md .github/README.md LICENSE.md
+    markdownlint --fix ./README.md .github/*.md LICENSE.md
     yamlfmt .github/workflows/*
     taplo fmt
     just --fmt
