@@ -8,6 +8,7 @@ permissions:
   contents: write
 jobs:
   install:
+    if: github.repository == 'trtlang/trt'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -16,6 +17,7 @@ jobs:
           name: install
           path: ./install.sh
   macos:
+    if: github.repository == 'trtlang/trt'
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v7
