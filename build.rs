@@ -1,4 +1,4 @@
-#![doc = include_str!("./README.md")]
+#![doc = include_str!(".github/README.md")]
 
 use {
     built::write_built_file,

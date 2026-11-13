@@ -1,3 +1,5 @@
+pub mod action;
+
 use {
     super::information::{
         PKG_AUTHORS,
@@ -5,6 +7,7 @@ use {
         PKG_NAME,
         PKG_VERSION
     },
+    action::Action,
     clap::Parser
 };
 
@@ -18,15 +21,15 @@ use {
     subcommand_required = true,
     propagate_version = true,
     long_version = PKG_VERSION,
-    author = PKG_AUTHORS
+    author = PKG_AUTHORS,
+    disable_help_subcommand = true
 )]
-pub enum Action {
+pub enum Subcommand {
     #[command(about = "Build an injection")]
     Build,
-    #[command(about = "Show the installed TRT version")]
-    Version,
-    #[command(about = "Show the TRT license")]
-    License,
-    #[command(about = "Update TRT to the latest version")]
-    Update
+    #[command(name = "@", about = "Manage this TRT installation")]
+    Installation {
+        #[command(subcommand)]
+        action: Action
+    }
 }
